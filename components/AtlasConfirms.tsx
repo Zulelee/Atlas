@@ -58,10 +58,30 @@ export default function AtlasConfirmsPage() {
       >
         Atlas Confirms
       </motion.h1>
+      <motion.p
+        className="text-lg text-center mb-8 mx-auto text-blue-300 max-w-7xl"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        Atlas Confirms analyzes audio recordings of appointment confirmation
+        calls. Upload an MP3 file of a call, and our AI will provide insights on
+        appointment status, key reasons, call summary, and emotional analysis.
+        This tool helps businesses optimize their appointment confirmation
+        process and improve customer interactions.
+      </motion.p>
+      <p className="text-sm text-center mb-8 text-gray-400 max-w-6xl m-auto">
+        Disclaimer: We prioritize your privacy and data security. No audio
+        files, analysis results, or any other data from your interactions with
+        Atlas Confirms are stored on our servers. All processing is done in
+        real-time, and once the analysis is complete, the data is immediately
+        discarded.
+      </p>
       <FileUploadZone
         onFileUpload={handleFileUpload}
         isUploading={isUploading}
       />
+
       {error && (
         <motion.p
           className="text-red-500 text-center mt-4"
@@ -266,7 +286,7 @@ function KeyReason({ reason }: KeyReasonProps) {
       <p className="mb-4">{reason.summary}</p>
       <div className="bg-gray-700 bg-opacity-50 rounded p-4">
         <p className="text-blue-300 mb-2">&quot;{reason.excerpt}&quot;</p>
-        <p className="text-sm text-gray-400">Timestamp: {reason.timestamp}</p>
+        {/* <p className="text-sm text-gray-400">Timestamp: {reason.timestamp}</p> */}
       </div>
     </motion.div>
   );
@@ -325,7 +345,7 @@ function EmotionalAnalysis({ analysis }: EmotionalAnalysisProps) {
         Overall Sentiment:{" "}
         <span className="font-bold">{analysis.overallSentiment}</span>
       </p>
-      <div className="mb-4 h-48">
+      <div className="my-4 h-56 p-">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
