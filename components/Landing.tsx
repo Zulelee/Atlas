@@ -2,10 +2,10 @@
 "use client";
 
 import { motion, useScroll, useTransform, cubicBezier } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, use } from "react";
 import Link from "next/link";
 import * as THREE from "three";
-
+import { useRouter } from "next/navigation";
 export default function LandingPage() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [shouldShow, setShouldShow] = useState(true);
@@ -155,11 +155,12 @@ function Services() {
     target: containerRef,
     offset: ["start start", "end end"],
   });
-
+  const router = useRouter();
   const services = [
     {
       title: "Atlas Confirms",
       description: "Did They Really Book? Know in Seconds.",
+      path: "/atlas-confirms",
     },
     // {
     //   title: "Atlas Predict",
@@ -477,6 +478,9 @@ function Services() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
+                    onClick={() => {
+                      router.push(service.path);
+                    }}
                   >
                     Test Now
                   </motion.button>
